@@ -8,7 +8,7 @@ layout: page
  In the fourth year of my undergraduate eduaction, i had an opportunity to study 
  at university of ottawa as an exchange student with chinese government scholarship. 
  It is a great honor which is awarded to those students who are excellent in all aspects, 
- such as study and morality. After the exchange program was ended, i start my postgraduate study at UOTTAWA.</p>
+ such as study and morality. After the exchange program was ended, i start my postgraduate study at uOttawa.</p>
 
 <p>I am going to get my master degree in Computer Science 
 on June 20 and ready to welcome my career life.</p>
@@ -31,7 +31,7 @@ on June 20 and ready to welcome my career life.</p>
 <h2>Projects</h2>
 
 <ul>
-	<li>(Markown)<a href="">HitachiStore</a></li>
+	<li>(Markown)<a href="">Personal Blog</a></li>
 	<li>(Java)<a href="">Distrbiuted System Project</a></li>
 	<li>(ASP.NET)<a href="">HitachiStore</a></li>
 	<li>(C#)<a href="">MIne Clearance</a></li>
