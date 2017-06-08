@@ -35,11 +35,11 @@ disqus:
 
 # if you don't have any of social below, comment the line
 facebook: profile.php?id=100008570043724
-twitter: 
+# twitter: 
 # google: mygoogle
 # instagram: myinstagram
 # pinterest: mypinterest
-# linkedin: mylinkedin
+  linkedin: mylinkedin
 # youtube: myyoutube
 # spotify: myspotify
 github: 
