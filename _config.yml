@@ -1,6 +1,6 @@
 # main text of home
-name: Jiaqi Xu
-bio: A new graduate in Master of Computer Science at University of Ottawa and ready to start my career life
+name: John Doe
+bio: A Man who travels the world eating noodles
 
 # twitter summary info
 description: A blog about technology and stuff related
@@ -16,7 +16,7 @@ resume: true
 resume-external: true
 resume-url: https://google.com/?q=my+resume
 
-url: https://jxu033.github.io
+url: https://koppl.in/indigo
 # your url: http://USERNAME.github.io
 
 permalink: /:title/
@@ -34,22 +34,22 @@ disqus:
   categories: [blog, project] # only show disqus for posts that have these categories
 
 # if you don't have any of social below, comment the line
-facebook: profile.php?id=100008570043724
-# twitter: 
+facebook: myfacebook
+twitter: mytwitter
 # google: mygoogle
 # instagram: myinstagram
 # pinterest: mypinterest
- linkedin: mylinkedin
+# linkedin: mylinkedin
 # youtube: myyoutube
 # spotify: myspotify
-github: 
+github: mygithub
 # lastfm: mylastfm
 # stackoverflow: 7044681/mystackoverflow
 # quora: userquora
 # reddit: username
-medium: 
+medium: medium
 # vimeo: myvimeo
-email: jiaqi.xu.smile@gmail.com
+email: myemail@gmail.com
 
 authors:
     johndoe:
