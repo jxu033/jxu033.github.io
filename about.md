@@ -5,13 +5,13 @@ layout: page
 ![Profile Image]({{ site.url }}/{{ site.picture }})
 
 <p>My name is Jiaqi Xu. I got my bachelor degree in China.
- In the fourth year of my undergraduate eduaction, i had an opportunity to study 
- at university of ottawa as an exchange student with chinese government scholarship. 
- It is a great honor which is awarded to those students who are excellent in all aspects, 
- such as study and morality. After the exchange program was ended, i start my postgraduate study at uOttawa.</p>
+ In the fourth year of my undergraduate eduaction, i had an opportunity to study
+ at university of ottawa as an exchange student with chinese government scholarship.
+ It is a great honor which is awarded to those students who are excellent in all aspects,
+ such as study and morality. After the exchange program was ended, i start my postgraduate study at uOttawa.
+ I am going to get my master degree in Computer Science
+ on June 20 and ready to welcome my career life.</p>
 
-<p>I am going to get my master degree in Computer Science 
-on June 20 and ready to welcome my career life.</p>
 
 <h2>Skills</h2>
 
@@ -20,19 +20,22 @@ on June 20 and ready to welcome my career life.</p>
 	<li>C#</li>
 	<li>HTML</li>
 	<li>CSS</li>
-	<li>Javascript</li>	
+	<li>Javascript</li>
 	<li>jQuery</li>
 	<li>Bootstrap</li>
 	<li>WordPress</li>
 	<li>SQL</li>
 	<li>Git</li>
+  <li>Jekyll</li>
+  <li>Markdown</li>
 </ul>
 
 <h2>Projects</h2>
 
 <ul>
-	<li>(Markown)<a href="">Personal Blog</a></li>
+	<li>(Jekyll,Markown)<a href="">Personal Blog</a></li>
 	<li>(Java)<a href="">Distrbiuted System Project</a></li>
 	<li>(ASP.NET)<a href="">HitachiStore</a></li>
 	<li>(C#)<a href="">MIne Clearance</a></li>
+  <li>(HTML,CSS,jQuery)<a href="">CodePlayer</a></li>
 </ul>

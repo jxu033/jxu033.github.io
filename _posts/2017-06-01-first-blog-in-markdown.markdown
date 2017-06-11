@@ -7,7 +7,7 @@ tag:
 - markdown
 star: true
 category: blog
-author: Jiaqi Xu
+author: jiaqixu
 ---
 
 ## Summary:

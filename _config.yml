@@ -52,18 +52,14 @@ github: jiaqi-xu
 email: jiaqi.xu.smile@gmail.com
 
 authors:
-    johndoe:
-        name: John Doe
-        bio: A Man who travels the world eating noodles
-        external-image: false
-        picture: assets/images/profile.jpg
-        twitter: johndoe
-    jamesfoster:
-        name: James Foster
-        bio: A Man who develops software with coffee
-        external-image: false
-        picture: assets/images/james.jpg
-        twitter: jamesfoster
+    jiaqixu:
+      name: Jiaqi Xu
+      bio: A new graduate in Computer Science at University of Ottawa and ready to welcome new opportunities and challenges
+      external-image: false
+      picture: assets/images/profile.jpg
+      facebook: jiaqixu93
+      linkedin: jiaqi-xu
+
 
 # do you want a larger site? change the option below
 # options: [normal, large] | default: normal
