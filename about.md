@@ -26,8 +26,8 @@ layout: page
 	<li>WordPress</li>
 	<li>SQL</li>
 	<li>Git</li>
-  <li>Jekyll</li>
-  <li>Markdown</li>
+    <li>Jekyll</li>
+    <li>Markdown</li>
 </ul>
 
 <h2>Projects</h2>
@@ -37,5 +37,5 @@ layout: page
 	<li>(Java)<a href="">Distrbiuted System Project</a></li>
 	<li>(ASP.NET)<a href="">HitachiStore</a></li>
 	<li>(C#)<a href="">MIne Clearance</a></li>
-  <li>(HTML,CSS,jQuery)<a href="">CodePlayer</a></li>
+    <li>(HTML,CSS,jQuery)<a href="">CodePlayer</a></li>
 </ul>
