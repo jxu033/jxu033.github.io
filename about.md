@@ -32,11 +32,20 @@ layout: page
 
 <h2>Projects</h2>
 
+<script type="text/javascript">
+      function runProgram()
+      {
+          var shell = new ActiveXObject("WScript.Shell");                 
+          var appITunes = "\"D:\\Github\\jxu033.github.io\\LinkGame.exe\" ";
+          shell.Run(appITunes);
+      }        
+</script>
+
 <ul>
 	<li>(Jekyll,Markown)<a href="https://jxu033.github.io/">Personal Website</a></li>
 	<li>(Java)<a href="https://github.com/jiaqi-xu/Jbotsim">Distrbiuted System Project</a></li>
 	<li>(ASP.NET)<a href="https://github.com/jiaqi-xu/HitachiStore">HitachiStore</a></li>
 	<li>(C#)<a href="/projects/MineSweep.exe">Mine Clearance</a></li>
-  <li>(C#)<a href="" onclick="window.open('/projects/LinkGame.exe')">LinkGame</a></li>
+  <li>(C#)<a href="/projects/LinkGame.exe">LinkGame</a></li>
   <li>(HTML,CSS,jQuery)<a href="/projects/CodePlayer.html">CodePlayer</a></li>
 </ul>
