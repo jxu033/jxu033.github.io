@@ -33,9 +33,10 @@ layout: page
 <h2>Projects</h2>
 
 <ul>
-	<li>(Jekyll,Markown)<a href="">Personal Website</a></li>
-	<li>(Java)<a href="">Distrbiuted System Project</a></li>
-	<li>(ASP.NET)<a href="">HitachiStore</a></li>
-	<li>(C#)<a href="">MIne Clearance</a></li>
-    <li>(HTML,CSS,jQuery)<a href="">CodePlayer</a></li>
+	<li>(Jekyll,Markown)<a href="https://jxu033.github.io/">Personal Website</a></li>
+	<li>(Java)<a href="https://github.com/jiaqi-xu/Jbotsim">Distrbiuted System Project</a></li>
+	<li>(ASP.NET)<a href="https://github.com/jiaqi-xu/HitachiStore">HitachiStore</a></li>
+	<li>(C#)<a href="/projects/MineSweep.exe">Mine Clearance</a></li>
+  <li>(C#)<a href="/projects/LinkGame.exe">LinkGame</a></li>
+  <li>(HTML,CSS,jQuery)<a href="/projects/CodePlayer/CodePlayer.html">CodePlayer</a></li>
 </ul>
