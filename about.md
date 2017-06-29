@@ -37,6 +37,6 @@ layout: page
 	<li>(Java)<a href="https://github.com/jiaqi-xu/Jbotsim">Distrbiuted System Project</a></li>
 	<li>(ASP.NET)<a href="https://github.com/jiaqi-xu/HitachiStore">HitachiStore</a></li>
 	<li>(C#)<a href="/projects/MineSweep.exe">Mine Clearance</a></li>
-  <li>(C#)<a href="/projects/LinkGame.exe">LinkGame</a></li>
+  <li>(C#)<a href="" onclick="window.open('/projects/LinkGame.exe')">LinkGame</a></li>
   <li>(HTML,CSS,jQuery)<a href="/projects/CodePlayer.html">CodePlayer</a></li>
 </ul>
