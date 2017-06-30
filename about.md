@@ -4,13 +4,10 @@ layout: page
 ---
 ![Profile Image]({{ site.url }}/{{ site.picture }})
 
-<p>My name is Jiaqi Xu. I got my bachelor degree in China.
- In the fourth year of my undergraduate eduaction, i had an opportunity to study
- at university of ottawa as an exchange student with chinese government scholarship.
- It is a great honor which is awarded to those students who are excellent in all aspects,
- such as study and morality. After the exchange program was ended, i started my postgraduate study at uOttawa.
- I am going to get my master degree in Computer Science
- on June 20 and ready to welcome my career life.</p>
+<p>Hi! My name is Jiaqi Xu and I am a recent graduate in Computer Science from
+University of Ottawa. I am intersted in Algorithm Design/Analysis, Software Development
+and Distributed Computing. Currently, I am looking for a full time job and am ready to
+start my career life.</p>
 
 
 <h2>Skills</h2>
@@ -26,8 +23,8 @@ layout: page
 	<li>WordPress</li>
 	<li>SQL</li>
 	<li>Git</li>
-    <li>Jekyll</li>
-    <li>Markdown</li>
+  <li>Jekyll</li>
+  <li>Markdown</li>
 </ul>
 
 <h2>Projects</h2>
