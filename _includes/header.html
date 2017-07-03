@@ -1,8 +1,15 @@
 {% if page.title == "Home"
-   or page.title == "Blog"
-   or page.title == "Projects"
-   or page.title == "Education"
+  <!-- or page.title == "Projects"-->
+  <!--  or page.title == "Blog" -->
+  <!-- or page.title == "Education"-->
 %}{% assign showHeader = true %}{% endif %}
+
+{% if page.title == "Blog" or page.title == "Projects" or page.title == "About" or page.title == "Education" %}
+{% assign showHeader = false %}{% endif %}
+
+<!-- added: new minimal header-->
+{% if page.title == "Blog" or page.title == "Projects" or page.title == "About" or page.title == "Education" %}
+{% assign showMinHeader = true %}{% endif %}
 
 {% if showHeader == true %}
     <header class="header-home {% if site.animation %}animated{% endif %}">
@@ -19,6 +26,14 @@
         <h1 class="title">{{ site.name }}</h1>
         <h2 class="description">{{ site.bio }}</h2>
 
+        {% include social-links.html %}
+    </header>
+{% endif %}
+
+<!-- added: new minimal header-->
+{% if showMinHeader == true %}
+    <header class="header-home {% if site.animation %}animated{% endif %}">
+        <h1 class="title">{{ page.title }}</h1>
         {% include social-links.html %}
     </header>
 {% endif %}
