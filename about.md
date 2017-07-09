@@ -11,14 +11,14 @@ start my career life.</p>
 
 
 <h2>Skills</h2>
-
 <ul class="skill-list">
 	<li>Java</li>
 	<li>C#</li>
 	<li>HTML</li>
 	<li>CSS</li>
-	<li>Javascript</li>
+	<li>JavaScript</li>
 	<li>jQuery</li>
+	<li>ASP.NET</li>
 	<li>Bootstrap</li>
 	<li>WordPress</li>
 	<li>SQL</li>
