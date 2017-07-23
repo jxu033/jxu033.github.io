@@ -29,6 +29,7 @@ Hibernate 是一个高性能的对象/关系型持久化存储和查询的服务
 - [映射文件 Mapping File](#映射文件-mapping-file)
 - [映射类型](#映射类型)
 - [Video Tutorial](#video-tutorial)
+
 ## ORM 概览
 
 什么是JDBC？<br>
