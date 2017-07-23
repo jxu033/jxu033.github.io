@@ -23,6 +23,7 @@ Hibernate 是一个高性能的对象/关系型持久化存储和查询的服务
 - [ORM 概览](#orm-概览)
 - [Hibernate 简介](#hibernate-简介)
 - [Hibernate 架构](#hibernate-架构)
+- [Environment Configuration](#environment-configuration)
 - [会话 Session](#会话-session)
 - [持久化类 Persistent Classes](#持久化类-persistent-classes)
 - [映射文件 Mapping File](#映射文件-mapping-file)
@@ -160,6 +161,46 @@ Query 对象使用 SQL 或者 Hibernate 查询语言（HQL）字符串在数据�
 
 Criteria 对象
 Criteria 对象被用于创造和执行面向规则查询的对象来检索对象。
+
+## Environment Configuration
+1. 下载Hibernate（我用的是hibernate-distribution-3.6.4.Final ）和msql-jdbc的包(因为我用的是mysql数据库)， 安装在计算机上，并解压如图所示：
+<img src="/assets/images/blog/HibernateJARAndmysqlJDBC.JPG">
+<img src="/assets/images/blog/HibernateJar.JPG">
+2. 导入eclipse, 并且add to build path。<br>
+<img src="/assets/images/blog/importJar.JPG">
+3. 设置配置文件hibernate.cfg.xml
+{% highlight html %}
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM 
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+   <session-factory>
+   <property name="hibernate.dialect">
+      org.hibernate.dialect.MySQLDialect
+   </property>
+   <property name="hibernate.connection.driver_class">
+      com.mysql.jdbc.Driver
+   </property>
+
+   <!-- Assume test is the database name -->
+   <property name="hibernate.connection.url">
+      jdbc:mysql://localhost/test
+   </property>
+   <property name="hibernate.connection.username">
+      root
+   </property>
+   <property name="hibernate.connection.password">
+      root123
+   </property>
+
+   <!-- List of XML mapping files -->
+   <mapping resource="Employee.hbm.xml"/>
+
+</session-factory>
+</hibernate-configuration> 
+{% endhighlight %}
+
 
 ## 会话 Session
 ession 用于获取与数据库的物理连接。 Session 对象是轻量级的，并且设计为在每次需要与数据库进行交互时被实例化。持久态对象被保存，并通过 Session 对象检索找回。
