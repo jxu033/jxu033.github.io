@@ -12,7 +12,7 @@ picture: assets/images/profile.jpg
 
 # If you want to include your resume, set to true
 # and specify source (external or local).
-resume: true
+resume: false
 resume-external: true
 resume-url: /download/JiaqiXuResume.pdf
 
@@ -77,6 +77,7 @@ width: normal
 about: true
 blog: true
 education: true
+tags: true
 # do you want to show the "read time" of the posts?
 read-time: true
 
