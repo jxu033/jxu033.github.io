@@ -23,13 +23,10 @@
             {% endif %}
         {% endif %}
 
-
-
-
-        {% if site.tags == true %}
-            {% if page.title != "Tags" %}
+        {% if site.projects == true %}
+            {% if page.title != "Projects" %}
                 <li class="item">
-                    <a class="link" href="{{ site.url }}/tags">Tags</a>
+                    <a class="link" href="{{ site.url }}/projects">Projects</a>
                 </li>
             {% endif %}
         {% endif %}
