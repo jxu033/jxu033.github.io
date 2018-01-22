@@ -117,3 +117,5 @@ ITEM_PIPELINES = {
 {% endhighlight %}
 
 #### 运行 spider, 爬取的数据将会被出入数据库中.
+
+<img src="/assets/images/blog/scraped_mongo_result.jpg">
