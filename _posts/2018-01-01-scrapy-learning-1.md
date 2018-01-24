@@ -1,5 +1,5 @@
 ---
-title: "scrapy 网络爬虫实战学习笔记-1"
+title: "scrapy learning note 1"
 layout: post
 date: 2018-01-01 22:45
 tag:
