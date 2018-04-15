@@ -4,30 +4,28 @@ layout: page
 ---
 ![Profile Image]({{ site.url }}/{{ site.picture }})
 
-<p>Hi! My name is Jiaqi Xu and I am a recent graduate in Computer Science from
-University of Ottawa. I am intersted in Algorithm Design/Analysis, Software Development
-and Distributed Computing. Currently, I am looking for a full time job and am ready to
-start my career life.</p>
+<center>       Love life, Love work. Keep making progress every day.</center>
 
 
 <h2>Skills</h2>
 <ul class="skill-list">
-	<li>Java</li>
-	<li>C#</li>
-	<li>HTML</li>
-	<li>CSS</li>
-	<li>JavaScript</li>
-	<li>jQuery</li>
-	<li>ASP.NET</li>
-	<li>Bootstrap</li>
-	<li>WordPress</li>
-	<li>SQL</li>
-	<li>Git</li>
-  <li>Jekyll</li>
-  <li>Markdown</li>
+  <li><b>Language:</b></li>
+	<p>Java, Python, Bash, HTML5, CSS#, JavaScript, SQL, Markdown</p>
+	<li><b>Web Development Framework:</b></li>
+	<p>SpringMCV, Flask, ASP.NET</p>
+	<li><b>JS Framework:</b></li>
+	<p>JQuery, AngularJS</p>
+	<li><b>Object-relational Mapping:</b></li>
+	<p>Hibernate, NHibernate, SQLAlchemy</p>
+	<li><b>Development Tools:</b></li>
+	<p>Eclipse IDE, PyCharm, Microsoft Visual Studio</p>
+	<li><b>Database:</b></li>
+	<p>MongoDB, Microsoft SQL Server, PostgreSQL</p>
+	<li><b>Others:</b></li>
+	<p>Git, SVN, Jekyll, Bootstrap, JSON, Network Protocol, Data Structure, Algorithm Design/Analysis, Design Pattern, Software Testing</p>
 </ul>
 
-<h2>Projects</h2>
+<h2>Personal Projects</h2>
 
 <script type="text/javascript">
       function runProgram()

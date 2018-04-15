@@ -1,6 +1,7 @@
 # main text of home
 name: Jiaqi Xu
-bio: A new graduate in Computer Science from University of Ottawa and ready to welcome new opportunities and challenges
+bio: A journey of a thousand miles begins with a single step<br>
+     不积跬步，无以至千里
 
 # twitter summary info
 description: A blog about technology and stuff related
@@ -54,7 +55,8 @@ email: jiaqi.xu.smile@gmail.com
 authors:
     jiaqixu:
       name: Jiaqi Xu
-      bio: A new graduate in Computer Science at University of Ottawa and ready to welcome new opportunities and challenges
+      bio: A journey of a thousand miles begins with a single step<br>
+           不积跬步，无以至千里
       external-image: false
       picture: assets/images/profile.jpg
       facebook: jiaqixu93
