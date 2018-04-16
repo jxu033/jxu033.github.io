@@ -12,7 +12,7 @@ layout: page
   <li><b>Language:</b></li>
 	<p>Java, Python, Bash, HTML5, CSS#, JavaScript, SQL, Markdown</p>
 	<li><b>Web Development Framework:</b></li>
-	<p>SpringMCV, Flask, ASP.NET</p>
+	<p>SpringMVC, Flask, ASP.NET</p>
 	<li><b>JS Framework:</b></li>
 	<p>JQuery, AngularJS</p>
 	<li><b>Object-relational Mapping:</b></li>
