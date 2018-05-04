@@ -17,7 +17,7 @@ resume: true
 resume-external: true
 resume-url: /download/JiaqiXuResume.pdf
 
-url: https://jqx.world
+url: http://jqx.world
 # your url: http://USERNAME.github.io
 
 permalink: /:title/
