@@ -17,7 +17,7 @@ resume: true
 resume-external: true
 resume-url: /download/JiaqiXuResume.pdf
 
-url: https://jxu033.github.io
+url: https://jqx.world
 # your url: http://USERNAME.github.io
 
 permalink: /:title/
@@ -79,6 +79,8 @@ width: normal
 about: true
 blog: true
 education: true
+post-tag: true
+
 # do you want to show the "read time" of the posts?
 read-time: true
 
@@ -96,6 +98,9 @@ show-author: true
 
 # do you want some animations?
 animation: true
+
+# bacground picture
+background: assets/images/background.png
 
 gems:
   - jekyll-seo-tag
