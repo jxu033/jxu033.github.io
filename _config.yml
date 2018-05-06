@@ -1,7 +1,6 @@
 # main text of home
 name: Jiaqi Xu
-bio: A journey of a thousand miles begins with a single step<br>
-     不积跬步，无以至千里
+bio: I am a graduate student at University of Ottawa and ready for any opportunities and challenges.
 
 # twitter summary info
 description: A blog about technology and stuff related
@@ -13,9 +12,9 @@ picture: assets/images/profile.jpg
 
 # If you want to include your resume, set to true
 # and specify source (external or local).
-resume: true
+resume: false
 resume-external: true
-resume-url: /download/JiaqiXuResume.pdf
+resume-url: /download/JiaqiXuResume2018.pdf
 
 url: http://jqx.world
 # your url: http://USERNAME.github.io
@@ -55,8 +54,7 @@ email: jiaqi.xu.smile@gmail.com
 authors:
     jiaqixu:
       name: Jiaqi Xu
-      bio: A journey of a thousand miles begins with a single step<br>
-           不积跬步，无以至千里
+      bio: I am a graduate student at University of Ottawa and ready for any opportunities and challenges.
       external-image: false
       picture: assets/images/profile.jpg
       facebook: jiaqixu93
@@ -78,8 +76,9 @@ width: normal
 # if you don't need "about" or "blog", comment them out below
 about: true
 blog: true
-education: true
+#education: true
 post-tag: true
+projects: true
 
 # do you want to show the "read time" of the posts?
 read-time: true

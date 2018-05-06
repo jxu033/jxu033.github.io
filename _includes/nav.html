@@ -6,14 +6,13 @@
             </li>
         {% endif %}
 
-        {% if site.education == true %}
-            {% if page.title != "Education" %}
+        {% if site.about == true %}
+            {% if page.title != "About" %}
                 <li class="item">
-                    <a class="link" href="{{ site.url }}/education">Education</a>
+                    <a class="link" href="{{ site.url }}/about">About</a>
                 </li>
             {% endif %}
         {% endif %}
-
 
         {% if site.blog == true %}
             {% if page.title != "Blog" %}
@@ -31,13 +30,7 @@
             {% endif %}
         {% endif %}
 
-        {% if site.about == true %}
-            {% if page.title != "About" %}
-                <li class="item">
-                    <a class="link" href="{{ site.url }}/about">About</a>
-                </li>
-            {% endif %}
-        {% endif %}
+
 
         {% if site.post-tag == true %}
             {% if page.title != "Tags" %}
