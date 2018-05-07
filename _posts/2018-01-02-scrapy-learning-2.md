@@ -1,5 +1,5 @@
 ---
-title: "scrapy learning note -2"
+title: "scrapy learning note 2"
 layout: post
 date: 2018-01-02 22:45
 tag:
