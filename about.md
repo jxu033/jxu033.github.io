@@ -41,7 +41,7 @@ September 2015 – June 2017<br>
 </script>
 <ul>
 	<li>(Flask, SQLAlchemy, )<a href="https://github.com/jiaqi-xu">Movie Studio(In Development)</a></li>
-	<li>(Python, Flask, SQLAlchemy, Bootstrap, MySQL)<a href="https://github.com/jiaqi-xu">Article Management System</a></li>
+	<li>(Python, Flask, SQLAlchemy, Bootstrap, MySQL)<a href="https://github.com/jiaqi-xu/artcms_project">Article Management System</a></li>
 	<li>(Python, Scrapy)<a href="https://github.com/jiaqi-xu">Scrapy Project</a></li>
 	<li>(Jekyll,Markown)<a href="https://jxu033.github.io/">Personal Website</a></li>
 	<li>(Java)<a href="https://github.com/jiaqi-xu/Jbotsim">Distrbiuted System Project</a></li>

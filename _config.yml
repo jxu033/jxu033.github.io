@@ -21,6 +21,7 @@ url: http://jqx.world
 
 permalink: /:title/
 
+markdown: kramdown
 # To enable google analytics, supply your token below
 analytics-google: 'UA-100871673-1'
 
