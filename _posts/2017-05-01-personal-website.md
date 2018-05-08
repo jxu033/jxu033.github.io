@@ -18,13 +18,14 @@ Jekyll is a Ruby Gem, and can be installed on most systems.
 
 #### Environment Setting
 * Install [Jekyll](http://jekyllrb.com), [NodeJS](https://nodejs.org/) and [Bundler](http://bundler.io/).
-* Clone the forked repo on your machine.
+* Clone the forked repo on machine.
 * cd to the repo directory and run  `bundle install`, it will install all the packages in Gemfile.
 * Then run `bundle exec jekyll serve --config _config.yml,_config-dev.yml`
-* Open it in your browser: `http://localhost:4000`
-* Test your app with `bundle exec htmlproofer ./_site`
+* Open it in browser: `http://localhost:4000`
+* Test app with `bundle exec htmlproofer ./_site`
 
-You must fill some informations on `_config.yml` to customize your site.
+Now, we can some informations on `_config.yml` to customize our site.<br>
+We can also write blog, project pages using Markdown and design our website.
 
 #### Pacakge.json
 This file is used to indicate that this project is a node project.
@@ -41,7 +42,7 @@ This file is used to indicate that this project is a node project.
 run  `npm run serve`
 
 #### Test
-You can test your app with: run `npm run test`
+We can test your app with: run `npm run test`
 
 #### Link
 [Jiaqi's blog](http://jqx.world/)
