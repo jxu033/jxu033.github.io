@@ -15,7 +15,7 @@ externalLink: false
 ---
 
 |![image](/assets/images/projects/mine_1.png)|![image](/assets/images/projects/mine_2.png)|
-|![image](/assets/images/projects/mine_4.png)|![image](/assets/images/projects/mine_4.png)|
+|![image](/assets/images/projects/mine_3.png)|![image](/assets/images/projects/mine_4.png)|
 
 #### Game Download
 [Mine Sweeper](/projects/MineSweep.exe)
