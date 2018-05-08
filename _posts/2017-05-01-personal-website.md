@@ -19,7 +19,7 @@ Jekyll is a Ruby Gem, and can be installed on most systems.
 #### Environment Setting
 * Install [Jekyll](http://jekyllrb.com), [NodeJS](https://nodejs.org/) and [Bundler](http://bundler.io/).
 * Clone the forked repo on machine.
-* cd to the repo directory and run  `bundle install`, it will install all the packages in Gemfile.
+* cd to the repo directory and run  `bundle install`, it will install all the packages in Gemfile.lock.
 * Then run `bundle exec jekyll serve --config _config.yml,_config-dev.yml`
 * Open it in browser: `http://localhost:4000`
 * Test app with `bundle exec htmlproofer ./_site`
