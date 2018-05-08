@@ -1,14 +1,14 @@
 {
-  "name": "indigo",
+  "name": "jxu033",
   "version": "1.0.0",
-  "homepage": "https://github.com/sergiokopplin/indigo#readme",
+  "homepage": "https://github.com/jxu033/jxu033.github.io#readme",
   "license": "MIT",
   "bugs": {
-      "url": "https://github.com/sergiokopplin/indigo/issues"
+      "url": "https://github.com/jxu033/jxu033.github.io/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sergiokopplin/indigo.git"
+    "url": "git+https://github.com/jxu033/jxu033.github.io.git"
   },
   "scripts": {
     "build": "bundle exec jekyll build --config _config.yml,_config_dev.yml",
