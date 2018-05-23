@@ -30,6 +30,7 @@ September 2015 – June 2017<br>
 	<li>CSI5166 Applications of Combinatorial Optimization</li>
 </ul>
 
+<!---
 #### Personal Projects
 <script type="text/javascript">
       function runProgram()
@@ -50,6 +51,7 @@ September 2015 – June 2017<br>
   <li>(C#)<a href="/projects/LinkGame.exe">LinkGame</a></li>
   <li>(HTML,CSS,jQuery)<a href="/projects/CodePlayer.html">CodePlayer</a></li>
 </ul>
+--->
 
 #### Resume
 <embed src="/download/JiaqiXuResume2018.pdf" width ="543" height="800" type="application/pdf">
