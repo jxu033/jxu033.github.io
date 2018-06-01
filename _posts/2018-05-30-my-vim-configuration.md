@@ -1,5 +1,5 @@
 ---
-title: "My Vim Configuration and some vim command notes"
+title: "My Vim Configuration"
 layout: post
 date: 2018-05-30 22:45
 tag:
