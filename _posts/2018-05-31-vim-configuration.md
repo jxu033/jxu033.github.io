@@ -130,6 +130,27 @@ Steps to install YCM:
 4. build a directory to save the files produced by compilation process： `mkdir ~/.ycm_build`  and go to the dirctory with `cd ~/.ycm_build`
 5. produce makefile: `cmake -G "Unix Makefiles" . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp`
 6. produce `ycm_core.so` file: run `make ycm_core`
+    ```text
+    [ 62%] Built target BoostParts
+    Scanning dependencies of target ycm_core
+    [ 65%] Building CXX object ycm/CMakeFiles/ycm_core.dir/Candidate.cpp.o
+    [ 67%] Building CXX object ycm/CMakeFiles/ycm_core.dir/CandidateRepository.cpp.o
+    [ 69%] Building CXX object ycm/CMakeFiles/ycm_core.dir/Character.cpp.o
+    [ 72%] Building CXX object ycm/CMakeFiles/ycm_core.dir/CharacterRepository.cpp.o
+    [ 74%] Building CXX object ycm/CMakeFiles/ycm_core.dir/CodePoint.cpp.o
+    [ 76%] Building CXX object ycm/CMakeFiles/ycm_core.dir/CodePointRepository.cpp.o
+    [ 79%] Building CXX object ycm/CMakeFiles/ycm_core.dir/IdentifierCompleter.cpp.o
+    [ 81%] Building CXX object ycm/CMakeFiles/ycm_core.dir/IdentifierDatabase.cpp.o
+    [ 83%] Building CXX object ycm/CMakeFiles/ycm_core.dir/IdentifierUtils.cpp.o
+    [ 86%] Building CXX object ycm/CMakeFiles/ycm_core.dir/PythonSupport.cpp.o
+    [ 88%] Building CXX object ycm/CMakeFiles/ycm_core.dir/Result.cpp.o
+    [ 90%] Building CXX object ycm/CMakeFiles/ycm_core.dir/Utils.cpp.o
+    [ 93%] Building CXX object ycm/CMakeFiles/ycm_core.dir/Word.cpp.o
+    [ 95%] Building CXX object ycm/CMakeFiles/ycm_core.dir/versioning.cpp.o
+    [ 97%] Building CXX object ycm/CMakeFiles/ycm_core.dir/ycm_core.cpp.o
+    [100%] Linking CXX shared library /Users/jiaqixu/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so
+    [100%] Built target ycm_core
+    ```
 7. cpoy `.ycm_extra_conf.py`: run `cp ~/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py ~/.vim/`
 8. config vim by adding: 注意下面的 python 解释器的路径要和编译 ycm_core 的时候使用的 python 解释器是相同的版本（2 或 3）
     ```text
