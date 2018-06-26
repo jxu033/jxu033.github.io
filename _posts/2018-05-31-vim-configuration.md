@@ -4,10 +4,9 @@ layout: post
 date: 2018-05-31
 tag:
 
-- python
-- flask-restful
-- sqlalchemy
-- mysql
+- vim
+- vimrc
+- text editor
 
 image:
 headerImage: false
@@ -198,9 +197,3 @@ set ruler " 打开状态栏标尺
 "set softtabstop=4 " 使得按退格键时可以一次删掉 4 个空格
 "set tabstop=4 " 设定 tab 长度为 4
 ```
-
-
-
-
-
-
