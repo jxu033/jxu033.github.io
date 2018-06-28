@@ -1,5 +1,6 @@
 ---
-title: "四种常见的POST提交数据方式对应的content-type的取值"
+title: "POST request and content-type"
+
 layout: post
 date: 2018-01-03 22:45
 tag:

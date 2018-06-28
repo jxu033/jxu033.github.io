@@ -1,5 +1,5 @@
 ---
-title: "Hibernate 教程"
+title: "Hibernate"
 layout: post
 date: 2017-06-21 22:44
 tag:
@@ -44,7 +44,7 @@ JDBC 提供了一个灵活的框架来编写操作数据库的独立的应用程
 {% highlight html %}
 public class Employee {
    private int id;
-   private String first_name; 
+   private String first_name;
    private String last_name;   
    private int salary;  
 
@@ -77,10 +77,10 @@ create table EMPLOYEE (
    last_name  VARCHAR(20) default NULL,
    salary     INT  default NULL,
    PRIMARY KEY (id)
-); 
+);
 {% endhighlight %}
 
-第一个问题，如果我们开发了几页代码或应用程序后，需要修改数据库的设计怎么办？第二个问题，在关系型数据库中加载和存储对象时我们要面临以下五个不匹配的问题:粒度，继承，身份，关联和导航。 
+第一个问题，如果我们开发了几页代码或应用程序后，需要修改数据库的设计怎么办？第二个问题，在关系型数据库中加载和存储对象时我们要面临以下五个不匹配的问题:粒度，继承，身份，关联和导航。
 
 Solution: Object-Relational Mapping (ORM) 是解决以上所有不匹配问题的方案。
 
@@ -172,7 +172,7 @@ Criteria 对象被用于创造和执行面向规则查询的对象来检索对�
 3. 设置配置文件hibernate.cfg.xml
 {% highlight html %}
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE hibernate-configuration SYSTEM 
+<!DOCTYPE hibernate-configuration SYSTEM
 "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
@@ -199,7 +199,7 @@ Criteria 对象被用于创造和执行面向规则查询的对象来检索对�
    <mapping resource="Employee.hbm.xml"/>
 
 </session-factory>
-</hibernate-configuration> 
+</hibernate-configuration>
 {% endhighlight %}
 
 
@@ -228,7 +228,7 @@ try {
 }
 catch (Exception e) {
    if (tx!=null) tx.rollback();
-   e.printStackTrace(); 
+   e.printStackTrace();
 }finally {
    session.close();
 }
@@ -254,7 +254,7 @@ POJO 的名称用于强调一个给定的对象是普通的 Java 对象，而不
 {% highlight html %}
 public class Employee {
    private int id;
-   private String firstName; 
+   private String firstName;
    private String lastName;   
    private int salary;  
 
@@ -300,7 +300,7 @@ public class Employee {
 {% highlight html %}
 public class Employee {
     private int id;
-    private String firstName; 
+    private String firstName;
     private String lastName;   
     private int salary;  
 
@@ -351,14 +351,14 @@ create table EMPLOYEE (
 基于这两个实体之上，我们可以定义下列映射文件来指示 Hibernate 如何将已定义的类或类组与数据库表匹配。
 {% highlight html %}
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC 
+<!DOCTYPE hibernate-mapping PUBLIC
  "-//Hibernate/Hibernate Mapping DTD//EN"
- "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
    <class name="Employee" table="EMPLOYEE">
       <meta attribute="class-description">
-         This class contains the employee detail. 
+         This class contains the employee detail.
       </meta>
       <id name="id" type="int" column="id">
          <generator class="native"/>
@@ -388,6 +388,3 @@ create table EMPLOYEE (
 这是一个<a href="https://www.youtube.com/playlist?list=PLaYqF7AnyNPeCFgvptK0TNKxsAIEUn71j" target="_blank">Hibernate的视频教学Website。</a>
 
 Refernece：<a href="http://wiki.jikexueyuan.com/project/hibernate/" target="_blank">理论介绍</a>
-
-
-
