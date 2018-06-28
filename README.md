@@ -1,23 +1,32 @@
+Jekyll is a Ruby Gem, and can be installed on most systems.
 
-## Setup
+#### Environment Setting
+* Install [Jekyll](http://jekyllrb.com), [NodeJS](https://nodejs.org/) and [Bundler](http://bundler.io/).
+* Clone the forked repo on machine.
+* cd to the repo directory and run  `bundle install`, it will install all the packages in Gemfile.lock.
+* Then run `bundle exec jekyll serve --config _config.yml,_config-dev.yml`
+* Open it in browser: `http://localhost:4000`
+* Test app with `bundle exec htmlproofer ./_site`
 
-0. :star: to the project. :metal:
-2. Fork the project [Indigo](https://github.com/sergiokopplin/indigo/fork)
-3. Edit `_config.yml` with your data (check <a href="README.md#settings">settings</a> section)
-4. Write some posts :bowtie:
+Now, we can some informations on `_config.yml` to customize our site.<br>
+We can also write blog, project pages using Markdown and design our website.
 
-If you want to test locally on your machine, do the following steps also:
+#### Pacakge.json
+This file is used to indicate that this project is a node project.
 
-1. Install [Jekyll](http://jekyllrb.com), [NodeJS](https://nodejs.org/) and [Bundler](http://bundler.io/).
-2. Clone the forked repo on your machine
-3. Enter the cloned folder via terminal and run `bundle install`
-4. Then run `bundle exec jekyll serve --config _config.yml,_config-dev.yml`
-5. Open it in your browser: `http://localhost:4000`
-6. Test your app with `bundle exec htmlproofer ./_site`
+```text
+"scripts": {
+  "build": "bundle exec jekyll build --config _config.yml,_config_dev.yml",
+  "serve": "bundle exec jekyll serve --config _config.yml,_config_dev.yml",
+  "test": "bundle exec htmlproofer ./_site"
+}
+```
 
-## Settings
+#### Simplify the command to run locally
+run  `npm run serve`
 
-You must fill some informations on `_config.yml` to customize your site.
+#### Test
+We can test your app with: run `npm run test`
 
-
-
+#### Link
+[Jiaqi's blog](http://jqx.world/)
