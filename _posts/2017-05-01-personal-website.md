@@ -45,4 +45,4 @@ run  `npm run serve`
 We can test your app with: run `npm run test`
 
 #### Link
-[Jiaqi's blog](http://jqx.world/)
+[Jiaqi's blog](http://xjq.world/)
