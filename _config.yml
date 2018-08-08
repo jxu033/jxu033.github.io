@@ -1,6 +1,7 @@
 # main text of home
 name: Jiaqi Xu
-bio: I am a graduate student at University of Ottawa and ready for any opportunities and challenges.
+bio:  🇨🇳Quzhou   ✈️   🇨🇳Hangzhou   ✈️   🇨🇦Ottawa skr~skr~
+      Multiple Personality Farmer in IT, FIGHTING FOR PEACE and LOVE.
 
 # twitter summary info
 description: A blog about technology and stuff related
@@ -36,27 +37,32 @@ disqus:
   categories: [blog, project] # only show disqus for posts that have these categories
 
 # if you don't have any of social below, comment the line
-facebook: jiaqixu93
+
 # twitter: mytwitter
 # google: mygoogle
-# instagram: myinstagram
+
 # pinterest: mypinterest
+email: jiaqi.xu.smile@gmail.com
 linkedin: jiaqi-xu
+github: jiaqi-xu
+instagram: jjjjjj_qqqqqq
+# facebook: jiaqixu93
 # youtube: myyoutube
 # spotify: myspotify
-github: jiaqi-xu
+
 # lastfm: mylastfm
 # stackoverflow: 7044681/mystackoverflow
 # quora: userquora
 # reddit: username
 # medium: medium
 # vimeo: myvimeo
-email: jiaqi.xu.smile@gmail.com
+
 
 authors:
     jiaqixu:
       name: Jiaqi Xu
-      bio: I am a graduate student at University of Ottawa and ready for any opportunities and challenges.
+      bio: 🇨🇳Quzhou   ✈️   🇨🇳Hangzhou   ✈️   🇨🇦Ottawa skr~skr~
+            Multiple Personality Farmer in IT, FIGHTING FOR PEACE and LOVE.
       external-image: false
       picture: assets/images/profile.jpg
       facebook: jiaqixu93
