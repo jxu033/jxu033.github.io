@@ -31,7 +31,7 @@ description: note for linux command for self-lookup
 
 other usage:
 ```text
-for i in 'find input -name '19827\*' -and -type d '
+for i in 'find input -name '19827*' -and -type d '
 do
   touch $i/.SKIP-VISA
 done
@@ -41,7 +41,7 @@ done
 grep 全称为global search regular expression and print out the line, 它是一种强大的文本搜索工具. 它能使用正则表达式搜索文件,并把匹配的行打印出来.
 
 用法:<br>
-grep -nirH -e "process$" --include *1.xom
+grep -nirH -e "process$" --include \*1.xom
 
 1. -e: 指定字符串作为查找文件内容的范本样式(regex)
 2. -n: 在显示符合范本样式的那一列之前,标示出该列的编号
@@ -139,7 +139,7 @@ chmod u+x, g+w file_1: 为文件file_1设置自己可以执行,组员可以写�
 #### type 命令
 type命令用来显示指定命令的类型, 判断给出的指定是内部指令还是外部指令.
 
-命令类型:?????????????????????????????
+命令类型:
 <ul>
 <li>alias: 别名</li>
 <li>keyword: 关键字, Shell保留字</li>
