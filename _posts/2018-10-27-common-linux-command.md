@@ -30,7 +30,8 @@ description: note for linux command for self-lookup
 7. find . -type l: 查找所有的符号链接.
 
 other usage:
-'''
+
+'''python
 for i in 'find input -name '19827\*' -and -type d '
 do
   touch $i/.SKIP-VISA
