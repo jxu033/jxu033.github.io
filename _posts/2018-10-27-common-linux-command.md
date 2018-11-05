@@ -28,12 +28,14 @@ description: note for linux command for self-lookup
 5. find . -type d: 按类型搜索文件, 这个命令用来查找所有的子目录.
 6. find . -type f: 查找所有的文件.
 7. find . -type l: 查找所有的符号链接.
-8. '''
-   for i in 'find input -name '19827*' -and -type d '
-   do
-     touch $i/.SKIP-VISA
-   done
-   '''
+
+other usage:
+'''
+for i in 'find input -name '19827\*' -and -type d '
+do
+  touch $i/.SKIP-VISA
+done
+'''
 
 #### grep 命令
 grep 全称为global search regular expression and print out the line, 它是一种强大的文本搜索工具. 它能使用正则表达式搜索文件,并把匹配的行打印出来.
