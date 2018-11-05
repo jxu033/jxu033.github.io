@@ -28,6 +28,12 @@ description: note for linux command for self-lookup
 5. find . -type d: 按类型搜索文件, 这个命令用来查找所有的子目录.
 6. find . -type f: 查找所有的文件.
 7. find . -type l: 查找所有的符号链接.
+8. '''
+   for i in 'find input -name '19827*' -and -type d '
+   do
+     touch $i/.SKIP-VISA
+   done
+   '''
 
 #### grep 命令
 grep 全称为global search regular expression and print out the line, 它是一种强大的文本搜索工具. 它能使用正则表达式搜索文件,并把匹配的行打印出来.
@@ -131,7 +137,7 @@ chmod u+x, g+w file_1: 为文件file_1设置自己可以执行,组员可以写�
 #### type 命令
 type命令用来显示指定命令的类型, 判断给出的指定是内部指令还是外部指令.
 
-命令类型:
+命令类型:?????????????????????????????
 <ul>
 <li>alias: 别名</li>
 <li>keyword: 关键字, Shell保留字</li>
@@ -286,6 +292,15 @@ history命令用于显示指定数目的指令命令，读取历史命令文件�
 #### backtick
 
 #### subshells
+
+### xargs
+xargs命令是给其他命令传递参数的一个过滤器, 也是组合多个命令的一个工具. 它擅长将标准输入数据转换称命令行参数, xargs能够处理管道或者stdin并将其转换成特定命令的命令参数.
+xargs也可以将单行或多行文本输入转换为其他格式, 例如多行变单行, 单行变多行. xargs的默认命令是echo, 空格是默认定界符. 这意味着通过管道传递给xargs的输入将会包含换行和空白,
+不过通过xargs的处理,换行和空白将被空格取代. xargs是构建单行命令的重要组件之一.
+
+用法:<br>
+1. find . -name ".SKIP-VISA" | xargs p4 add
+
 
 to be continue...
 
