@@ -84,8 +84,8 @@ Tags: Python, Flask, SQLAlchemy, Bootstrap, MySQL
 
 
 #### Resume
-<embed src="/download/JiaqiXuResume2018.pdf" width ="543" height="800" type="application/pdf">
-<a href="/download/JiaqiXuResume2018.pdf" download>Download</a>
+<embed src="/download/JiaqiXuResume2019.pdf" width ="543" height="800" type="application/pdf">
+<a href="/download/JiaqiXuResume2019.pdf" download>Download</a>
 
 #### Transcript
 <embed src="/download/transcript.pdf" width ="543" height="800" type="application/pdf">

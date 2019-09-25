@@ -1,7 +1,6 @@
 # main text of home
 name: Jiaqi Xu
-bio:  🇨🇳Quzhou   ✈️   🇨🇳Hangzhou   ✈️   🇨🇦Ottawa skr~skr~
-      Time is the most important thing.
+bio:  Just Do It √
 
 # twitter summary info
 description: A blog about technology and stuff related
@@ -15,7 +14,7 @@ picture: assets/images/profile.jpg
 # and specify source (external or local).
 resume: false
 resume-external: true
-resume-url: /download/JiaqiXuResume2018.pdf
+resume-url: /download/JiaqiXuResume2019.pdf
 
 url: http://jqx.world
 # your url: http://USERNAME.github.io
