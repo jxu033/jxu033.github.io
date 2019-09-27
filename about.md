@@ -62,5 +62,5 @@ September 2015 – June 2017<br>
 --->
 
 
-### [Reference](#Reference)
+### [Reference](#reference)
 <embed src="/download/Jiaqi-pbaker.pdf" width ="543" height="800" type="application/pdf">
