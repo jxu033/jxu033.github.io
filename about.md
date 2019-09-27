@@ -61,3 +61,7 @@ September 2015 – June 2017<br>
 <embed src="/download/transcript.pdf" width ="543" height="800" type="application/pdf">
 <a href="/download/transcript.pdf" download>Download</a>
 --->
+
+
+### [Reference](#Reference)
+<embed src="/download/Jiaqi-pbaker.pdf" width ="543" height="800" type="application/pdf">
