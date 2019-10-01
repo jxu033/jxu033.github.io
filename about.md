@@ -53,8 +53,8 @@ September 2015 – June 2017<br>
 </ul>
 --->
 
-#### Resume
-<embed src="/download/JiaqiXuResume2019.pdf" width ="543" height="800" type="application/pdf">
+<!--#### Resume-->
+<!--<embed src="/download/JiaqiXuResume2019.pdf" width ="543" height="800" type="application/pdf">-->
 
 <!---#### Transcript
 <embed src="/download/transcript.pdf" width ="543" height="800" type="application/pdf">
