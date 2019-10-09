@@ -14,7 +14,9 @@ layout: page
 
 ### University of Ottawa - Master of Computer Science (Co-op)
 September 2015 – June 2017<br>
-– GPA: 9.67/10<br>
+– GPA: 9.45/10<br>
+– Teaching assistant of course: CSI 4105 Design & Analysis Of Algorithms II and
+                        course: CSI 5166 Application Of Combinatorial Optimization<br>
 – Completed a Distributed System Project supervised by <a href="http://www.site.uottawa.ca/~flocchin/" >Paola Flocchini</a>
 
 #### Courses

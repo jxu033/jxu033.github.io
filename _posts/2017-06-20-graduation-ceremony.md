@@ -6,7 +6,7 @@ tag:
 - master
 - graduation
 - ceremony
-star: true
+star: 
 category: blog
 author: jiaqixu
 description: graduation ceremony for master's degree
