@@ -1,7 +1,7 @@
 ---
 title: "python learning note"
 layout: post
-date: 2018-01-03 22:45
+date: 2017-09-09 22:45
 tag:
 - python
 - basic
