@@ -1,7 +1,7 @@
 ---
 title: "Common Linux Command"
 layout: post
-date: 2018-10-27 22:44
+date: 2017-10-27 22:44
 tag:
 - linux
 - command
