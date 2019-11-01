@@ -12,20 +12,20 @@ description: note for Redis
 ---
 
 ### 目录
-- [Redis的安装](#Redis的安装)
-- [Redis五大数据类型](#Redis五大数据类型)
-    * [Redis的Key的基本命令操作](#redis的Key的基本命令操作)
-    * [String类型以及命令操作](#string类型以及命令操作)
+- [redis的安装](#Redis的安装)
+- [redis五大数据类型](#Redis五大数据类型)
+    * [redis的Key的基本命令操作](#redis的Key的基本命令操作)
+    * [string类型以及命令操作](#string类型以及命令操作)
     * [原子性](#原子性)  
-    * [List类型以及命令操作](#list类型以及命令操作)
-    * [Set类型以及命令操作](#set类型以及命令操作)
-    * [Hash类型以及命令操作](#hash类型以及命令操作)
+    * [list类型以及命令操作](#list类型以及命令操作)
+    * [set类型以及命令操作](#set类型以及命令操作)
+    * [hash类型以及命令操作](#hash类型以及命令操作)
     * [zset类型以及命令操作](#zset类型以及命令操作)
 - [Redis配置文件](#redis配置文件)
 - [Redis事务](#redis事务)
 
 
-### Redis的安装
+### redis的安装
 ```text
 1. https://redis.io/download
 2. 创建一个Redis文件夹，在terminal下cd到该文件夹下，curl -O http://download.redis.io/releases/redis-5.0.5.tar.gz
@@ -39,8 +39,8 @@ redis-cli: 客户端，操作入口
 ```
 
 
-### Redis五大数据类型
-#### Redis的Key的基本命令操作
+### redis五大数据类型
+#### redis的Key的基本命令操作
 ```text
 keys *  查询当前库的所有键
 keys ?  ？表示占位符，相当于模糊查询的下划线
@@ -55,7 +55,7 @@ flushdb 清空当前数据库
 flushall 通杀全部库
 ```
 
-#### String类型以及命令操作
+#### string类型以及命令操作
 * String是Redis最基本的类型，可以理解成与Memcached一摸一样的模型，一个key对应一个value。
 * String类型是二进制安全的。意味着Redis的string可以包含任何数据。比如jpg图片或者序列化对象。
 * String类型是Redis最基本的数据类型，一个Redis中字符串value最多可以是512MB。
@@ -118,7 +118,7 @@ flushall 通杀全部库
 
 Redis单命令的原子性主要得益于Redis的单线程。
 
-#### List类型以及命令操作
+#### list类型以及命令操作
 * 单键多值(也就是说key是一个，value是多个，其实合在一起还是字符串，只是结构类似于list，还是key-value对)。
 * Redis列表是简单的字符串列表，按照插入顺序排序。可以添加一个元素到列表的头部(左边)后者尾部(右边)。
 * 它的底层实际是个双向链表，对两端的操作性能很好，通过索引下标的操作中间的节点性能会较差。
@@ -192,7 +192,7 @@ Redis单命令的原子性主要得益于Redis的单线程。
   sdiff  <key1> <key2> 返回两个集合的差集元素(返回在key1集合中，不在key2集合的元素的集合)
   ```
   
-#### Hash类型以及命令操作
+#### hash类型以及命令操作
 * Redis hash是一个键值对集合(指的是value是键值对形式)
 * Redis hash是一个string类型的field和value的映射表，hash特别适合用于存储对象。
   
@@ -251,7 +251,7 @@ Redis单命令的原子性主要得益于Redis的单线程。
   ```
 
 
-### Redis配置文件
+### redis配置文件
 在启动Redis服务器时，我们需要为其指定一个配置文件，缺省情况下配置文件在Redis的源码目录下，文件名为**redis.conf**。
 
 Redis配置文件使用 ################ 被分成了几大块区域。
@@ -331,7 +331,7 @@ maxmemory-policy <方式>
 LRU(Least Recently Used), LFU(Least Frequently Used)
 ```
 
-### Redis事务
+### redis事务
 Redis事务允许一组命令在单一的步骤中执行。事务有三个特性:
 * Redis事务是一个单独的隔离操作:事务中的所有命令都会序列化，按顺序地执行。事务在执行过程中，
 不会被其他客户端发送来的命令请求所打断。
