@@ -12,14 +12,14 @@ description: note for Redis
 ---
 
 ### 目录
-- [redis的安装](#Redis的安装)
-- [redis五大数据类型](#Redis五大数据类型)
-    * [redis的Key的基本命令操作](#redis的Key的基本命令操作)
-    * [string类型以及命令操作](#string类型以及命令操作)
+- [Redis的安装](#redis的安装)
+- [Redis五大数据类型](#redis五大数据类型)
+    * [Redis的key的基本命令操作](#redis的key的基本命令操作)
+    * [String类型以及命令操作](#string类型以及命令操作)
     * [原子性](#原子性)  
-    * [list类型以及命令操作](#list类型以及命令操作)
-    * [set类型以及命令操作](#set类型以及命令操作)
-    * [hash类型以及命令操作](#hash类型以及命令操作)
+    * [List类型以及命令操作](#list类型以及命令操作)
+    * [Set类型以及命令操作](#set类型以及命令操作)
+    * [Hash类型以及命令操作](#hash类型以及命令操作)
     * [zset类型以及命令操作](#zset类型以及命令操作)
 - [Redis配置文件](#redis配置文件)
 - [Redis事务](#redis事务)
@@ -40,7 +40,7 @@ redis-cli: 客户端，操作入口
 
 
 ### redis五大数据类型
-#### redis的Key的基本命令操作
+#### redis的key的基本命令操作
 ```text
 keys *  查询当前库的所有键
 keys ?  ？表示占位符，相当于模糊查询的下划线
