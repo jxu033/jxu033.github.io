@@ -22,7 +22,11 @@ description: note for Redis
     * [Hash类型以及命令操作](#hash类型以及命令操作)
     * [zset类型以及命令操作](#zset类型以及命令操作)
 - [Redis配置文件](#redis配置文件)
+- [Redis订阅发布模式](#redis订阅发布模式)
 - [Redis事务](#redis事务)
+- [Redis数据备份与恢复](#redis数据备份与恢复)
+- [Redis持久化](#redis持久化)
+    * [RDB](#rdb)
 
 
 ### redis的安装
@@ -331,6 +335,45 @@ maxmemory-policy <方式>
 LRU(Least Recently Used), LFU(Least Frequently Used)
 ```
 
+### redis订阅发布模式
+Redis发布订阅(pub/sub)是一种消息通信模式:发送者(pub)发送消息，订阅者(sub)接收消息。
+Redis客户端可以订阅任意数量的频道。下图展示了频道channel1，以及订阅这个频道的三个客户端 ---
+client2,client5,client1之间的关系:
+
+![image](/assets/images/blog/redis-8.png)
+
+当有新消息通过PUBLISH命令发送给频道channel1时，这个消息就会被发送给订阅它的三个客户端:
+
+![image](/assets/images/blog/redis-9.png)
+
+```text
+订阅给指定频道的信息: SUBSCRIBE channel [channel...]
+将信息message发送到指定的频道channel: PUBLISH channel message
+```
+应用案例:
+```text
+Jiaqis-MacBook-Pro:jxu033.github.io jiaqi$ redis-cli
+127.0.0.1:6379> SUBSCRIBE class:20191020
+Reading messages... (press Ctrl-C to quit)
+1) "subscribe"
+2) "class:20191020"
+3) (integer) 1
+1) "message"
+2) "class:20191020"
+3) "I love u"
+1) "message"
+2) "class:20191020"
+3) "I love her"
+
+
+Jiaqis-MacBook-Pro:jxu033.github.io jiaqi$ redis-cli
+127.0.0.1:6379> PUBLISH class:20191020 "I love u"
+(integer) 1
+127.0.0.1:6379> PUBLISH class:20191020 "I love her"
+(integer) 1
+127.0.0.1:6379> 
+```
+
 ### redis事务
 Redis事务允许一组命令在单一的步骤中执行。事务有三个特性:
 * Redis事务是一个单独的隔离操作:事务中的所有命令都会序列化，按顺序地执行。事务在执行过程中，
@@ -392,6 +435,112 @@ UNWATCH
 * 取消WATCH命令对所有key的监视
 * 如果在执行WATCH命令之后，EXEC命令或DISCARD命令先被执行了的化，那么就不需要再执行UNWATCH了。
 
+### redis数据备份与恢复
+Redis SAVE命令用于创建当前数据库的备份。
+```text
+127.0.0.1:6379> save
+OK
+```
+该命令将在redis安装目录(我感觉是启动redis-server的目录)中创建dump.rdb文件。
 
+如果需要恢复数据,只需将备份文件(dump.rdb)移动到redis安装目录并启动服务即可。获取redis目录可以使用CONFIG命令:
+```text
+127.0.0.1:6379> CONFIG GET dir
+1) "dir"
+2) "/Users/jiaqi/personal_projects/jxu033.github.io"
+```
+以上命令CONFIG GET dir输出的redis安装目录为/Users/jiaqi/personal_projects/jxu033.github.io
+
+创建redis备份文件也可以使用命令BGSAVE，该命令在后台执行。
+```text
+127.0.0.1:6379> bgsave
+Background saving started
+```
+注意: 对于dump.rdb的存储的路径问题，可以通过修改redis.conf配置文件的snapshotting模块的dir变量来指定。默认为./，即运行redis-server的当前目录。
+
+### Redis持久化
+Redis提供了2个不同形式的持久化方式: RDB(Redis Database)和AOF(Append Of File)
+持久化的数据的作用: 用于重启后的数据恢复。
+
+#### RDB
+在指定的时间间隔内将内存中的数据集**快照**写入磁盘，也就是行话讲的Snapshot快照，它恢复时是将快照文件直接读到内存里。
+
+**备份是如何执行的(对于bgsave来说)**:<br>
+Redis会单独创建(fork)一个子进程来进行持久化，会先将数据写入到一个临时文件中，待持久化过程都结束了，再用这个临时文件替换上次持久化好的文件。
+整个过程中，主进程是不进行任何IO操作的，这就确保了极高的性能。如果需要进行大规模数据的恢复，且对于数据恢复的完整性不是非常敏感，那RDB方式要比
+AOF方式更加的高效。RDB的缺点就是最后一次持久化之后的数据可能会丢失。
+
+**关于fork**:<br>
+在Linux程序中，fork()会产生一个和父进程完全相同的子进程，但子进程在此后多会exec系统调用，出于效率考虑，Linux中引入了
+**"写时复制技术"**（内核只为新生成的子进程创建虚拟空间结构，它们复制于父进程的虚拟空间结构，但是不为这些段分配物理内存，它们共享父进程的物理空间，当父子进程中有更改相应的段的行为发生时，再为子进程相应的段分配物理空间。）
+，一般情况父进程和子进程会共用同一段物理内存，只有进程空间的各段内容要发生变化时，才会将父进程的内容复制一份一份给子进程。
+
+
+**rdb的保存的文件**:<br>
+在redis.conf中配置文件名称，默认为dump.rdb。
+```text
+# The filename where to dump the DB
+dbfilename dump.rdb
+```
+rdb文件的保存路径，也可以修改。默认为redis启动时命令行所在的目录下。
+```text
+# The working directory.
+#
+# The DB will be written inside this directory, with the filename specified
+# above using the 'dbfilename' configuration directive.
+#
+# The Append Only File will also be created inside this directory.
+#
+# Note that you must specify a directory here, not a file name.
+dir ./
+```
+
+**rdb的保存策略**:<br>
+```text
+# Save the DB on disk:
+#
+#   save <seconds> <changes>
+#
+#   Will save the DB if both the given number of seconds and the given
+#   number of write operations against the DB occurred.
+#
+#   In the example below the behaviour will be to save:
+#   after 900 sec (15 min) if at least 1 key changed
+#   after 300 sec (5 min) if at least 10 keys changed
+#   after 60 sec if at least 10000 keys changed
+#
+#   Note: you can disable saving completely by commenting out all "save" lines.
+#
+#   It is also possible to remove all the previously configured save
+#   points by adding a save directive with a single empty string argument
+#   like in the following example:
+#
+#   save ""
+
+save 900 1
+save 300 10
+save 60 10000
+```
+
+**手动保存快照**: **save**<br>
+* 命令save: 只管保存，其他不管，全部阻塞(会阻塞客户端的写操作)
+* save vs bgsave(会使用前面所说的备份原理，调用fork机制)
+
+注意: Redis的RDB文件不会坏掉，因为其写操作是在一个新的进程中进行的。当生成一个新的RDB文件时，Redis生成的
+子进程会先将数据写到一个临时文件中，然后通过原子性rename系统调用将临时文件重命名为RDB文件。
+这样在任何时候出现故障，Redis的EDB文件都总是可用的。
+
+以下是一些关于RDB持久化的其他配置:
+```text
+stop-writes-on-bgsave-error yes
+当Redis无法写入磁盘的化，直接关掉Redis的写操作
+
+rdbcompression yes
+进行rdb保存时，将文件压缩
+
+rdbchecksum yes
+在存储快照后，还可以让redis使用CRC64算法来进行数据校验，但是这样会增大大约10%的性能消耗，如果希望
+获取到最大的性能提升，可以关闭此功能
+```
 
 
