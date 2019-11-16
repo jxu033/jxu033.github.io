@@ -1,5 +1,5 @@
 ---
-title: "Nginx note"
+title: "Nginx learning note"
 layout: post
 date: 2019-10-30 22:44
 tag:
@@ -60,7 +60,14 @@ description: note for nginx
     * [Nginx单向ssl配置](#nginx单向ssl配置)
     * [Nginx配置双向认证](#nginx配置双向认证)
 - [Nginx日志配置](#nginx日志配置)
-        
+    * [Nginx的错误日志](#nginx的错误日志)
+    * [Nginx访问日志格式](#nginx访问日志格式)
+    * [Nginx访问日志配置](#nginx访问日志配置)
+    * [Nginx访问日志过滤](#nginx访问日志过滤)
+    * [Nginx访问日志切割](#nginx访问日志切割)
+- [Nginx优化](#nginx优化)
+    
+       
 
 ### Nginx安装-源码方式
     curl -O http://nginx.org/download/nginx-1.14.0.tar.gz
@@ -2113,3 +2120,179 @@ cp /etc/pki/ca_test/root/ca.crt /usr/local/nginx/conf/
 curl -k --cert /etc/pki/ca_test/client/client.crt  --key /etc/pki/ca_test/client/client.key https://www.123.com/index.html
 ```
 
+### Nginx日志配置
+
+#### Nginx的错误日志
+```
+Nginx错误日志平时不用太关注，但是一旦出了问题，就需要借助错误日志来判断问题所在。
+
+配置参数格式：error_log /path/to/log level;
+```
+
+##### Nginx错误日志级别
+```
+常见的错误日志级别有debug | info | notice | warn | error | crit | alert | emerg
+级别越高记录的信息越少，如果不定义，默认级别为error.
+
+它可以配置在main、http、server、location段里。
+
+如果在配置文件中定义了两个error_log，在同一个配置段里的话会产生冲突，所以同一个段里只允许配置一个error_log。
+但是，在不同的配置段中出现是没问题的。
+```
+
+##### Nginx错误日志示例
+```
+error_log  /var/log/nginx/error.log crit;
+
+如果要想彻底关闭error_log，需要这样配置
+error_log /dev/null;
+
+在location和main中都定义了error_log(debug级别)，然后重新加载nginx，发现main中定义的日志文件有新的内容，而location中定义的日志没有内容；
+如果通过访问匹配某个location的uri，发现location对应的日志出现内容，而main对应的没有。
+```
+
+#### Nginx访问日志格式
+```
+Nginx访问日志可以设置自定义的格式，来满足特定的需求。
+```
+
+##### 访问日志格式示例
+```
+示例1
+    log_format combined_realip '$remote_addr $http_x_forwarded_for [$time_local]'
+    '$host "$request_uri" $status'
+    '"$http_referer" "$http_user_agent"';
+
+示例2
+    log_format main '$remote_addr [$time_local] '
+    '$host "$request_uri" $status "$request"'
+    '"$http_referer" "$http_user_agent" "$request_time"';
+
+若不配置log_format或者不在access_log配置中指定log_format，则默认格式为：
+    '$remote_addr - $remote_user [$time_local] "$request" '
+    '$status $body_bytes_sent "$http_referer" '
+    '"$http_user_agent";
+
+```
+##### 常见变量
+| 变量       | 说明    |
+| :--------   | :-----   | 
+|$time_local|  通用日志格式下的本地时间；（服务器时间）|
+|$remote_addr|客户端（用户）IP地址|
+|$status| 请求状态码，如200，404，301，302等|
+|$body_bytes_sent |发送给客户端的字节数，不包括响应头的大小|
+|$bytes_sent|发送给客户端的总字节数|
+|$request_length|请求的长度（包括请求行，请求头和请求正文）|
+|$request_time |请求处理时间，单位为秒，小数的形式|
+|$upstream_addr|集群轮询地址|
+|$upstream_response_time|指从Nginx向后端（php-cgi)建立连接开始到接受完数据然后关闭连接为止的时间|
+|$remote_user|用来记录客户端用户名称|
+|$request |请求方式（GET或者POST等）+URL（包含$request_method,$host,$request_uri）|
+|$http_user_agent|用户浏览器标识|
+|$http_host |请求的url地址（目标url地址）的host|
+|$host|等同于$http_host|
+|$http_referer|来源页面，即从哪个页面转到本页，如果直接在浏览器输入网址来访问，则referer为空|
+|$uri |请求中的当前URI(不带请求参数，参数位于$args)，不同于浏览器传递的$request_uri的值，它可以通过内部重定向，或者使用index指令进行修改。|
+|$document_uri|等同于$uri|
+|$request_uri|比$uri多了参数，即$uri+$args|
+|$http_x_forwarded_for|如果使用了代理，这个参数会记录代理服务器的ip和客户端的ip|
+
+
+#### Nginx访问日志配置
+```
+web服务器的访问日志是非常重要的，我们可以通过访问日志来分析用户的访问情况，
+也可以通过访问日志发现一些异常访问，比如cc攻击。
+
+格式： access_log /path/to/logfile format;
+
+access_log可以配置到http, server, location配置段中。
+
+```
+
+##### 配置示例
+```
+server 
+{
+    listen 80;
+    server_name www.test.com;
+    root /data/wwwroot/www.test.com;
+    index index.html index.php;
+    access_log /data/logs/www.test.com_access.log main;
+}
+说明：若不指定log_format，则按照默认的格式写日志。
+
+```
+
+
+#### Nginx访问日志过滤
+```
+一个网站，会包含很多元素，尤其是有大量的图片、js、css等静态元素。
+这样的请求其实可以不用记录日志。
+```
+##### 配置示例
+```
+location ~* ^.+\.(gif|jpg|png|css|js)$ 
+{
+    access_log off;
+}
+
+或
+location ~* ^.+\.(gif|jpg|png|css|js)$                                      
+{
+    access_log /dev/null;
+}
+```
+
+
+#### Nginx访问日志切割
+```
+如果任由访问日志写下去，日志文件会变得越来越大，甚至是写满磁盘。
+所以，我们需要想办法把日志做切割，比如每天生成一个新的日志，旧的日志按规定时间删除即可。
+
+实现日志切割可以通过写shell脚本或者系统的日志切割机制实现。
+```
+##### shell脚本切割Nginx日志(将所有日志定义在同一目录下可以方便切割)
+```
+切割脚本内容：
+#!/bin/bash
+logdir=/var/log/nginx  //定义日志路径(所有日志都已经在配置文件中定义在此路径下)
+prefix=`date -d "-1 day" +%y%m%d`  //定义切割后的日志前缀
+cd $logdir  
+for f in `ls *.log`
+do
+   mv $f $f-$prefix  //把日志改名
+done
+/bin/kill -USR1 $(cat /usr/local/nginx/logs/nginx.pid 2>/dev/null) 2>/dev/null  //生成新的日志
+bzip2 *$prefix  //压缩日志
+find . -type f -mtime +180 |xargs /bin/rm -f  //删除超过180天的老日志
+
+```
+
+##### 系统日志切割机制
+```
+在/etc/logrotate.d/下创建nginx文件，内容为：
+/data/logs/*log {
+    daily
+    rotate 30
+    missingok
+    notifempty
+    compress
+    sharedscripts
+    postrotate
+        /bin/kill -USR1 $(cat /usr/local/nginx/logs/nginx.pid 2>/dev/null) 2>/dev/null || :
+    endscript
+}
+
+说明：
+1 nginx日志在/data/logs/目录下面，日志名字以log结尾
+2 daily表示每天切割
+3 rotate 30表示日志保留30天
+4 missingok表示忽略错误
+5 notifempty表示如果日志为空，不切割
+6 compress表示压缩
+7 sharedscripts和endscript中间可以引用系统的命令
+8 postrotate表示当切割之后要执行的命令
+```
+
+
+### Nginx优化
