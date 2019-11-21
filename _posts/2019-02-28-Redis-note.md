@@ -580,6 +580,7 @@ rdbchecksum yes
 的内容将写指令从前到后执行一次以完成数据的恢复工作。
 
 * AOF默认不开启，需要手动在配置文件中配置(APPEND ONLY MODE)。
+
 ```text
 ############################## APPEND ONLY MODE ###############################
 
@@ -605,14 +606,17 @@ appendonly no
 ```
 
 * 可以在redis.conf配置文件名称，默认为appendonly.aof
+
 ```text
 # The name of the append only file (default: "appendonly.aof")
 
 appendfilename "appendonly.aof" 
 # AOF文件名如上，其存取的路径和rdb共用一个路径，即dir指定的路径。
 ```
+
 * AOF文件的保存路径，同RDB的路径一致，均由dir指定。
 * AOF的保存策略
+
 ```text
 # The fsync() call tells the Operating System to actually write data on disk
 # instead of waiting for more data in the output buffer. Some OS will really flush
@@ -643,6 +647,7 @@ appendfsync everysec # 秒对于我们来说和快，计算机来说其实还算
 ```
 
 * 如果AOF和RDB同时开启(两个文件都有appendonly.aof和dump.rdb)，听谁的
+
 ```text
 听AOF的(读appendonly.aof,即AOF器作用)。这和保存周期有关系，因为RDB有时间间隔，在时间间隔当中如果出现问题，则数据就丢失了。
 AOF也有自己的保存策略，相对于RDB来说，AOF保存的数据会多一些，所以恢复的时候用数据多的来恢复肯定会好一些。有人会说，那我将RDB保存策略时间设置短一些，但是
@@ -652,6 +657,7 @@ AOF也有自己的保存策略，相对于RDB来说，AOF保存的数据会多�
 * AOF会丢失数据吗
 
 ![image](/assets/images/blog/redis-10.png)
+
 ```text
 当然也会丢失数据。
 appendfsync everysec 是指每条会去进行同步，但是数据的传递分好多层次，如上图：
