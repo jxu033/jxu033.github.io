@@ -572,7 +572,7 @@ rdbchecksum yes
 缺点:
 * 虽然redis在fork时使用了写时拷贝技术，但是如果数据庞大时还时比较消耗性能。
 * 在备份周期在一定间隔时间做一次备份，所以如果redis意外宕掉的话，就会丢失最后一次快照
-只、之后的所有修改。
+之后的所有修改。
 
 #### AOF
 **以日志的形式来记录每个写操作**(即不记录get)，将Redis执行过的所有写指令记录下来(读操作不记录)，
@@ -724,6 +724,7 @@ AOF当前大小>=base_size + base_size * 100% 并且当前大小>=64mb(默认)�
 ### Redis主从复制之读写分离
 * 主从复制，就是主机数据更新后根据配置和策略，自动同步到备机的master/slaver机制，
 **Master以写为主，Slave以读为主**
+
 ![image](/assets/images/blog/redis-11.png)
 
 * 用处: 读写分离，性能扩展; 容灾快速恢复
@@ -857,6 +858,7 @@ slaveof localhost 6379
 
 #### 配置哨兵实例
 * 调整为一主二仆模式
+
 ```text
 启动3个redis服务器:
 redis-server conf/ms/redis6379.conf
@@ -873,6 +875,7 @@ redis-cli -p 6381 # 连接后可用info replication查看信息
 ```
 
 * 自定义的/myredis目录下新建sentinel.conf文件
+
 * 在sentinel.conf配置文件中填写内容
 ```text
 sentinel monitor mymaster 127.0.0.1 6379 1
@@ -881,6 +884,7 @@ sentinel monitor mymaster 127.0.0.1 6379 1
 # port master服务器的端口号
 # 数字1表示至少有多少个哨兵同意迁移的数量(有几个哨兵认为主机挂了就真的挂了); 这里1就是说如果有一个哨兵认为你服务器挂掉了，就会进行主机切换。
 ```
+
 * 启动哨兵命令
 ```text
 redis-sentinel <哨兵配置文件路径>
@@ -889,7 +893,9 @@ redis-sentinel <哨兵配置文件路径>
 +slave slave 127.0.0.1:6380 @ mymaster 127.0.0.1 6379
 +slave slave 127.0.0.1:6381 @ mymaster 127.0.0.1 6379
 ```
+
 * shutdown主机6379
+
 ```text
 现在我们shutdown了master服务器，过了一段时间后，我们可以在控制台上看到新的信息产生:
 新产生的信息包括判断6379主机是否宕掉的信息，故障转移信息，切换主机信息等。
@@ -897,6 +903,7 @@ redis-sentinel <哨兵配置文件路径>
 ```
 
 * 将宕掉的6379服务器重新启动
+
 ```text
 在6379启动后，不会马上变化，其启动后一开始还是master(哨兵还没来得及监控到他)，但是因为之前三台服务器之间彼此建立了关系(包括主从，哨兵等)，过了一会儿，哨兵
 发现其活过来了，就会将其转换为6381的从机，这也就是我们会在控制台上看到下面信息的原因。
@@ -906,6 +913,7 @@ redis-sentinel <哨兵配置文件路径>
 ```
 
 #### Redis主从复制之故障恢复
+
 故障恢复换句话说就是当主机宕掉(出现了故障)之后，根据什么机制来迁移主机(将选举从机并将其转换为主机)。
 
 ![image](/assets/images/blog/redis-15.png)
