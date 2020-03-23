@@ -23,10 +23,10 @@ description: presentation for jenkins
 	4.	插件github pull request build具体配置和效果介绍<br>
 	5.	总结<br>
 
-**Presentation PPT**
+**Presentation PPT**<br>
 <iframe height=498 width=510 src="/assets/images/ppt/Jenkins初体验以及应用.pptx" frameborder=0 allowfullscreen></iframe>
 
-**Presentation Video**
+**Presentation Video**<br>
 <iframe height=498 width=510 src="/assets/images/video/jenkins_presentation.mp4" frameborder=0 allowfullscreen></iframe>
 
 
