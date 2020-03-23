@@ -24,7 +24,7 @@ description: presentation for jenkins
 	5.	总结<br>
 
 **Presentation PPT**<br>
-<embed height="498" width="510" src="/assets/images/ppt/Jenkins初体验以及应用.pptx">
+<embed height="498" width="510" src="/assets/images/ppt/Jenkins初体验以及应用.pdf" type="application/pdf">
 
 **Presentation Video**<br>
 <embed height="498" width="510" src="/assets/images/video/jenkins_presentation.mp4" type="video/mp4">
