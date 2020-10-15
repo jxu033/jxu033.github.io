@@ -12,6 +12,11 @@ description: note for linux
 
 ### 目录
 - [fstab](#fstab)
+- [免sudo使用docker](#免sudo使用docker)
+- [给用户admin权限，免密使用sudo](#给用户admin权限，免密使用sudo)
+- [github-ssh-拉取](#github-ssh-拉取)
+- [jenkins修改启动用户后，无法启动](#jenkins修改启动用户后，无法启动)
+- 
 
 
 ### fstab
@@ -74,3 +79,58 @@ Host github2.com
 [remote "origin"]
 	url = git@github2.com:guandata/ul-aidp.git
 ```
+
+### jenkins修改启动用户后，无法启动
+```
+# 以centos为例
+日志文件路径 /var/log/jenkins/jenkins.log
+配置文件路径：/etc/sysconfig/jenkins
+Jenkins_home目录：包含各种metadata信息(e.g. plugins, users, config.xml)，可在配置文件中重新设置
+
+# 在jenkins配置文件中修改JENKINS_USER后，启动jenkins的时候就会以该用户启动，为保证其能且能正常启动，需要修改一些文件夹权限(可以通过启动时日志给出的信息知道得知)
+1. chown -R jiaqi:jenkins /var/log/jenkins
+2. chown -R jaiqi:jenkins /var/cache/jenkins
+修改完成后，通过sudo service jenkins restart即可成功启动
+```
+
+### 网卡
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### iptables和filewalld
+https://www.linuxprobe.com/chapter-08.html
+
+
+### ping, telnet, netstat，arp
+```
+ping(Packet Internet Groper)
+目的：测试源主机与目的主机的连通性。
+原理：Ping命令工作在OSI(Open System Interconnection Reference Model开放式系统互联模型)的第三层网络层。Ping命令会发送ICMP(Internet控制报文协议, 它是TCP/IP协议簇的一个子协议，用于在IP主机、路由器之间传递控制消息，控制消息是指网络通不通，主机是否可达 、路由是否可用等网络本身的消息) 数据包到目的主机，然后等待从目的主机接收回复的数据包，当目的主机接收到这个数据包时，为源主机发送回复数据包。
+
+telnet(teletype network)
+目的：可以用来测试远程机器或本地机器上某端口是否开放
+原理：telnet是应用层协议，是Internet远程登录服务的标准协议和主要形式。登录的账号密码与数据铭文传输，不加密。
+e.g. telnet <IP> <Port>
+
+netstat(network statistics)
+目的：查看所有网络连接，端口使用情况，占用端口的进程等等
+常用命令: netstat -lnp | grep <port>
+
+arp(address resolution protocol)
+目的： 用于实现从IP地址到MAC地址的映射，即询问目标IP对应的MAC地址。
+原理： https://zhuanlan.zhihu.com/p/28771785
+```
+
+### tcp和udp
