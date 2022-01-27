@@ -1,7 +1,7 @@
 ---
 title: "Flink Stream Processing APIs"
 layout: post
-date: 2021-01-30 22:45
+date: 2022-01-30 22:45
 tag:
 - flink
 - stream
@@ -264,7 +264,6 @@ DataStream<Integer> mapStram = dataStream.map(new MapFunction<String, Integer>()
 ```
 
 ##### flatMap
-![image](/assets/images/blog/flink/flatMap.png)
 
 ```
 DataStream<String> flatMapStream = dataStream.flatMap(new FlatMapFunction<String,
