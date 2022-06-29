@@ -12,7 +12,6 @@ author: jiaqixu
 ---
 
 ## 目录
-
 - [介绍](#介绍)
 - [TiDB架构特性](#tidb架构特性)
 	- [TiDB整体架构](#tidb整体架构)
