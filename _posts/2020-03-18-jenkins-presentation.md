@@ -1,6 +1,6 @@
 ---
 title: "Jenkins Presentation For AI Team"
-layout: post
+layout: 
 date: 2020-03-18 19:00
 tag:
 - Jenkins

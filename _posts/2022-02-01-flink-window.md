@@ -1,12 +1,12 @@
 ---
 title: "Flink Window"
-layout: post
+layout: 
 date: 2022-02-01 22:45
 tag:
 - flink
 - window
 - api
-star: false
+star: true
 category: blog
 author: jiaqixu
 ---

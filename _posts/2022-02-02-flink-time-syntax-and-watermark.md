@@ -1,6 +1,6 @@
 ---
 title: "Flink Time Syntax And Watermark"
-layout: post
+layout: 
 date: 2022-02-02 22:45
 tag:
 - flink
@@ -170,7 +170,8 @@ dataStream.assignTimestampsAndWatermarks(
 		@Override
 		public long extractTimestamp(SensorReading element) { 
 			return element.getTimestamp() * 1000L;
-		}});
+		}
+});
 ```
 
 ##### Assigner with punctuated watermarks
