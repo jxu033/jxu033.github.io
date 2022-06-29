@@ -6,7 +6,7 @@ tag:
 - flink
 - window
 - api
-star: true
+star: false
 category: blog
 author: jiaqixu
 ---
@@ -95,7 +95,17 @@ TimeWindow 是将指定时间范围内的所有数据组成一个 window，一�
 Flink 默认的时间窗口根据 Processing Time 进行窗口的划分，将 Flink 获取到的数据根据进入 Flink 的时间划分到不同的窗口中。
 
 ```
-DataStream<Tuple2<String, Double>> minTempPerWindowStream = dataStream	.map(new MapFunction<SensorReading, Tuple2<String, Double>>() {		@Override		public Tuple2<String, Double> map(SensorReading value) throwsException {			return new Tuple2<>(value.getId(), value.getTemperature());		}	})	.keyBy(data -> data.f0)	.timeWindow( Time.seconds(15) )	.minBy(1);
+DataStream<Tuple2<String, Double>> minTempPerWindowStream = dataStream
+	.map(new MapFunction<SensorReading, Tuple2<String, Double>>() {
+		@Override
+		public Tuple2<String, Double> map(SensorReading value) throws
+Exception {
+			return new Tuple2<>(value.getId(), value.getTemperature());
+		}
+	})
+	.keyBy(data -> data.f0)
+	.timeWindow( Time.seconds(15) )
+	.minBy(1);
 ```
 
 时间间隔可以通过 Time.milliseconds(x)，Time.seconds(x)，Time.minutes(x)等其中的一个来指定。
@@ -107,7 +117,10 @@ DataStream<Tuple2<String, Double>> minTempPerWindowStream = dataStream	.map(new
 下面代码中的 sliding_size 设置为了 5s，也就是说，每 5s 就计算输出结果一次， 每一次计算的 window 范围是 15s 内的所有元素。
 
 ```
-DataStream<SensorReading> minTempPerWindowStream = dataStream	.keyBy(SensorReading::getId)	.timeWindow( Time.seconds(15), Time.seconds(5) )	.minBy("temperature");
+DataStream<SensorReading> minTempPerWindowStream = dataStream
+	.keyBy(SensorReading::getId)
+	.timeWindow( Time.seconds(15), Time.seconds(5) )
+	.minBy("temperature");
 ```
 
 时间间隔可以通过 Time.milliseconds(x)，Time.seconds(x)，Time.minutes(x)等其中的一个来指定。
@@ -123,7 +136,10 @@ CountWindow 根据窗口中相同 key 元素的数量来触发执行，执行时
 默认的 CountWindow 是一个滚动窗口，只需要指定窗口大小即可，当元素数量达到窗口大小时，就会触发窗口的执行。
 
 ```
-DataStream<SensorReading> minTempPerWindowStream = dataStream	.keyBy(SensorReading::getId)	.countWindow( 5 )	.minBy("temperature");
+DataStream<SensorReading> minTempPerWindowStream = dataStream
+	.keyBy(SensorReading::getId)
+	.countWindow( 5 )
+	.minBy("temperature");
 ```
 
 ##### 滑动窗口
@@ -133,7 +149,10 @@ DataStream<SensorReading> minTempPerWindowStream = dataStream	.keyBy(SensorRead
 下面代码中的 sliding_size 设置为了 2，也就是说，每收到两个相同 key 的数据 就计算一次，每一次计算的 window 范围是 10 个元素。
 
 ```
-DataStream<SensorReading> minTempPerWindowStream = dataStream	.keyBy(SensorReading::getId)	.countWindow( 10, 2 )	.minBy("temperature");
+DataStream<SensorReading> minTempPerWindowStream = dataStream
+	.keyBy(SensorReading::getId)
+	.countWindow( 10, 2 )
+	.minBy("temperature");
 ```
 
 
