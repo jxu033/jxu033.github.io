@@ -6,7 +6,7 @@ tag:
 - Jenkins
 - CI
 star: true
-category: blog
+category: 
 author: jiaqixu
 description: presentation for jenkins
 ---
