@@ -26,17 +26,21 @@ description: Jooq使用问题
 替换开发过程中一个比较有意思的问题是，数据库迁移成pg之后，修改历史接口报了如下错误(备注：和数据集无关的业务我们orm用的是mybatis):
 ![image](/assets/images/blog/jooq-postgres-jdbc-1.png)								
 图-1
+
 ![image](/assets/images/blog/jooq-postgres-jdbc-2.png)
 图-2
-上面的错误显示的是**tried to send an out-of-range integer as a 2-byte value: 33979. **
+
+上面的错误显示的是**tried to send an out-of-range integer as a 2-byte value: 33979**
 我们根据堆栈信息我们定位到问题所在，原来Postgres JDBC在发送query到服务端时会进行参数个数校验，如下图
 ![image](/assets/images/blog/jooq-postgres-jdbc-3.png)
 图-3
+
 如果绑定的参数的个数不在2个字节所能表示的有符号整数的范围内(-32768,  32767)，则会抛出图-2所示的异常。图-1中sql绑定的参数个数为33979个，故不在范围内。
 
 所以我们现在知道了报错的原因是**PostgreSQL JDBC中对于SQL语句的参数数量限制为2个字节所能表示的有符号整数的范围(-32768 ~ 32767)**，即**最大的参数个数为32767**. 
 
 这个时候我们开始担心了，那我们项目中例如数据同步，数据修改这些地方 使用jooq拼接的sql都有可能超过这个最大参数。
+
 准备了一个实验数据，大概20列1W行，批量导入的时候也有5000行，那么数据导入到临时表的sql拼接完后必然会有20*5000=10W个参数 > 32767，所以我们预期是会报同样的错误的。运行后，发现数据同步成功，没有报错，并且也确认会走图-3的验证函数，但是发现val为0,  即参数个数为0，和预期的1w个参数不符合。
 ![image](/assets/images/blog/jooq-postgres-jdbc-4.png)
 我又找了一个参数较少的case，如下，此时参数个数如预期一样是4个, 能通过验证。
@@ -205,7 +209,7 @@ protected final int execute(ExecuteContext ctx, ExecuteListener listener) throws
       
 ```
 
-execute:
+execute:<br>
 DefaultPreparedStatement.java -> DruidPooledPreparedStatement.java -> PgPreparedStatement.java -> PgStatement.java -> QueryExecutorImpl.java
 
 ```java
