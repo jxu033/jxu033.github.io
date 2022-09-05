@@ -20,15 +20,8 @@ Hibernate 是一个高性能的对象/关系型持久化存储和查询的服务
 这个教程将指导你如何以简单的方式使用 Hibernate 来开发基于数据库的 Web 应用程序。
 
 ### 目录
-- [ORM 概览](#orm-概览)
-- [Hibernate 简介](#hibernate-简介)
-- [Hibernate 架构](#hibernate-架构)
-- [Environment Configuration](#environment-configuration)
-- [会话 Session](#会话-session)
-- [持久化类 Persistent Classes](#持久化类-persistent-classes)
-- [映射文件 Mapping File](#映射文件-mapping-file)
-- [映射类型](#映射类型)
-- [Video Tutorial](#video-tutorial)
+* TOC
+{:toc}
 
 ## ORM 概览
 

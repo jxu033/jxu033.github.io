@@ -11,12 +11,8 @@ description: note for linux
 ---
 
 ### 目录
-- [fstab](#fstab)
-- [免sudo使用docker](#免sudo使用docker)
-- [给用户admin权限，免密使用sudo](#给用户admin权限，免密使用sudo)
-- [github-ssh-拉取](#github-ssh-拉取)
-- [jenkins修改启动用户后，无法启动](#jenkins修改启动用户后，无法启动)
-- 
+* TOC
+{:toc}
 
 
 ### fstab
