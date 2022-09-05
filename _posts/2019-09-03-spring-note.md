@@ -10,7 +10,7 @@ author: jiaqixu
 description: note for spring
 ---
 
-[toc]
+{:toc}
 
 ## 一、Spring概述 
 
