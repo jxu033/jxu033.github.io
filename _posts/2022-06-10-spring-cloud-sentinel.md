@@ -648,4 +648,289 @@ public class CustomExceptionHandler {
 
 ## Sentinel规则持久化
 
-To be continued...
+### 9.1 原始模式
+
+如果不做任何修改，Dashboard的推送规则方式是通过API将规则推送至客户端并直接更新到内存中。
+
+这种做法的好处是简单，无依赖;
+
+坏处是应用重启，规则就会消失，仅用于简单测试，不能用于生产环境。
+
+![image](/assets/images/blog/springcloud/sentinel-规则持久化-原始模式.png) 
+
+### 9.2 Pull模式
+
+`FileRefreshableDataSource`定时从指定文件中读取规则JSON文件【图中的本地文件】，如果发现文件发生变化，就更新规则缓存。
+
+`FileWritableDataSource`接收控制台规则推送，并根据配置，修改规则JSON文件【图中的本地文件】。
+
+![image](/assets/images/blog/springcloud/sentinel-规则持久化-pull模式.png) 
+
+#### 9.2.1 pom依赖
+```
+<dependency>
+  <groupId>com.alibaba.csp</groupId>
+  <artifactId>sentinel-datasource-extension</artifactId>
+</dependency>
+```
+
+#### 9.2.2 核心代码
+
+```
+package com.jq.sentinel;
+
+import com.alibaba.csp.sentinel.command.handler.ModifyParamFlowRulesCommandHandler;
+import com.alibaba.csp.sentinel.datasource.*;
+import com.alibaba.csp.sentinel.init.InitFunc;
+import com.alibaba.csp.sentinel.slots.block.authority.AuthorityRule;
+import com.alibaba.csp.sentinel.slots.block.authority.AuthorityRuleManager;
+import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRule;
+import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRuleManager;
+import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
+import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
+import com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowRule;
+import com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowRuleManager;
+import com.alibaba.csp.sentinel.slots.system.SystemRule;
+import com.alibaba.csp.sentinel.slots.system.SystemRuleManager;
+import com.alibaba.csp.sentinel.transport.util.WritableDataSourceRegistry;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+/**
+ * @Author jiaqi.xu
+ * @Date 2022/11/06 18:01
+ */
+public class FileDataSourceInit implements InitFunc {
+    @Override
+    public void init() throws Exception {
+        // TIPS: 如果你对这个路径不喜欢，可修改为你喜欢的路径
+        String ruleDir = System.getProperty("user.dir") +"/sentinel/rules";
+        String flowRulePath = ruleDir + "/flow-rule.json";
+        String degradeRulePath = ruleDir + "/degrade-rule.json";
+        String systemRulePath = ruleDir + "/system-rule.json";
+        String authorityRulePath = ruleDir + "/authority-rule.json";
+        String paramFlowRulePath = ruleDir + "/param-flow-rule.json";
+        this.mkdirIfNotExits(ruleDir);
+        this.createFileIfNotExits(flowRulePath);
+        this.createFileIfNotExits(degradeRulePath);
+        this.createFileIfNotExits(systemRulePath);
+        this.createFileIfNotExits(authorityRulePath);
+        this.createFileIfNotExits(paramFlowRulePath);
+
+        // 流控规则
+        ReadableDataSource<String, List<FlowRule>> flowRuleRDS = new FileRefreshableDataSource<>(
+                flowRulePath,
+                flowRuleListParser
+        );
+        // 将可读数据源注册至FlowRuleManager
+        // 这样当规则文件发生变化时，就会更新规则到内存
+        FlowRuleManager.register2Property(flowRuleRDS.getProperty());
+        WritableDataSource<List<FlowRule>> flowRuleWDS = new FileWritableDataSource<>(
+                flowRulePath,
+                this::encodeJson
+        );
+        // 将可写数据源注册至transport模块的WritableDataSourceRegistry中
+        // 这样收到控制台推送的规则时，Sentinel会先更新到内存，然后将规则写入到 文件中
+        WritableDataSourceRegistry.registerFlowDataSource(flowRuleWDS);
+
+        // 降级规则
+        ReadableDataSource<String, List<DegradeRule>> degradeRuleRDS = new FileRefreshableDataSource<>(
+                        degradeRulePath,
+                        degradeRuleListParser
+                );
+        DegradeRuleManager.register2Property(degradeRuleRDS.getProperty());
+        WritableDataSource<List<DegradeRule>> degradeRuleWDS = new FileWritableDataSource<>(
+                degradeRulePath,
+                this::encodeJson
+        );
+        WritableDataSourceRegistry.registerDegradeDataSource(degradeRuleWDS);
+
+        // 系统规则
+        ReadableDataSource<String, List<SystemRule>> systemRuleRDS = new FileRefreshableDataSource<>(
+                        systemRulePath,
+                        systemRuleListParser
+                );
+        SystemRuleManager.register2Property(systemRuleRDS.getProperty());
+        WritableDataSource<List<SystemRule>> systemRuleWDS = new FileWritableDataSource<>(
+                systemRulePath,
+                this::encodeJson
+        );
+        WritableDataSourceRegistry.registerSystemDataSource(systemRuleWDS);
+
+        // 授权规则
+        ReadableDataSource<String, List<AuthorityRule>> authorityRuleRDS = new FileRefreshableDataSource<>(
+                authorityRulePath,
+                authorityRuleListParser
+        );
+        AuthorityRuleManager.register2Property(authorityRuleRDS.getProperty()
+        );
+        WritableDataSource<List<AuthorityRule>> authorityRuleWDS = new
+                FileWritableDataSource<>(
+                authorityRulePath,
+                this::encodeJson
+        );
+        WritableDataSourceRegistry.registerAuthorityDataSource(authorityRuleWDS);
+
+        // 热点参数规则
+        ReadableDataSource<String, List<ParamFlowRule>> paramFlowRuleRDS = new FileRefreshableDataSource<>(
+                paramFlowRulePath,
+                paramFlowRuleListParser
+        );
+        ParamFlowRuleManager.register2Property(paramFlowRuleRDS.getProperty());
+        WritableDataSource<List<ParamFlowRule>> paramFlowRuleWDS = new FileWritableDataSource<>(
+                paramFlowRulePath,
+                this::encodeJson
+        );
+        ModifyParamFlowRulesCommandHandler.setWritableDataSource(paramFlowRuleWDS);
+    }
+
+    private Converter<String, List<FlowRule>> flowRuleListParser = source -> JSON.parseObject(
+                    source,
+                    new TypeReference<List<FlowRule>>() {}
+            );
+
+    private Converter<String, List<DegradeRule>> degradeRuleListParser = source -> JSON.parseObject(
+            source,
+            new TypeReference<List<DegradeRule>>() {}
+    );
+
+    private Converter<String, List<SystemRule>> systemRuleListParser = source -> JSON.parseObject(
+            source,
+            new TypeReference<List<SystemRule>>() {}
+    );
+
+    private Converter<String, List<AuthorityRule>>
+            authorityRuleListParser = source -> JSON.parseObject(
+            source,
+            new TypeReference<List<AuthorityRule>>() {}
+    );
+
+    private Converter<String, List<ParamFlowRule>> paramFlowRuleListParser = source -> JSON.parseObject(
+            source,
+            new TypeReference<List<ParamFlowRule>>() {}
+    );
+
+    private void mkdirIfNotExits(String filePath) throws IOException {
+        File file = new File(filePath);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+    }
+    private void createFileIfNotExits(String filePath) throws
+            IOException {
+        File file = new File(filePath);
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+    }
+    private <T> String encodeJson(T t) {
+        return JSON.toJSONString(t);
+    }
+}
+
+```
+
+### 9.2.3 配置
+
+在项目的 resources/META-INF/services 目录下创建文件，
+
+文件名: com.alibaba.csp.sentinel.init.InitFunc，内容为如下:
+
+```
+# 改成上面FileDataSourceInit的包名类名全路径即可。
+com.jq.sentinel.FileDataSourceInit
+```
+
+### 9.2.4 优缺点分析
+
+* 优点：简单易懂；没有多余依赖(如配置中心、缓存等)
+* 缺点：
+	1. 由于规则是用 FileRefreshableDataSource 定时更新的，所以规则更新会有延迟。如果FileRefreshableDataSource定时时间过大，可能⻓时间延迟; 如果FileRefreshableDataSource过小，又会影响性能;
+	2. 规则存储在本地文件，如果有一天需要迁移微服务，那么需要把规则文件一起迁移， 否则规则会丢失。
+
+### 9.3 Push模式
+
+生产环境下一般更常用的是 push 模式的数据源。对于 push 模式的数据源, 如远程配置中心(ZooKeeper, Nacos, Apollo等等), 推送的操作不应由 Sentinel 客户端进行，而应该经控制台统一进行管理，直接进行推送，数据源仅负责获取配置中心推送的配置并更新到本地。
+
+因此推送规则正确做法应该是 配置中心控制台/Sentinel 控制台 → 配置中心 → Sentinel 数据源 → Sentinel，而不是经 Sentinel 数据源推送至配置中心。流程如下：
+
+![image](/assets/images/blog/springcloud/sentinel-规则持久化-push模式.png) 
+
+### 9.3.1 控制台改造
+需要改造sentinel源码，具体是sentinel-dashboard模块的代码，因为dashboard默认情况下是将配置的规则往微服务端的内存中推送的，并不是往配置中心去推。
+
+### 9.3.2 微服务端
+```
+<!-- sentinel -->
+<dependency>
+    <groupId>com.alibaba.cloud</groupId>
+    <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+</dependency>
+<!-- sentinel的nacos持久化 --> <dependency>
+    <groupId>com.alibaba.csp</groupId>
+    <artifactId>sentinel-datasource-nacos</artifactId>
+</dependency>
+```
+
+### 9.3.3 添加配置
+```
+spring:
+  cloud:
+    sentinel:
+      transport:
+port: 8721
+dashboard: localhost:8888 eager: true #饥饿加载 web-context-unify: false datasource:
+flow: nacos:
+            server-addr: ${nacos.server-addr}
+            username: ${nacos.username}
+            password: ${nacos.password}
+            namespace: ${nacos.namespace}
+            groupId: SENTINEL_GROUP
+            dataId: ${spring.application.name}-flow-rules
+            rule-type: flow
+        degrade:
+          nacos:
+            server-addr: ${nacos.server-addr}
+            username: ${nacos.username}
+            password: ${nacos.password}
+            namespace: ${nacos.namespace}
+            groupId: SENTINEL_GROUP
+            dataId: ${spring.application.name}-degrade-rules
+            rule-type: degrade
+            param-flow:
+          nacos:
+            server-addr: ${nacos.server-addr}
+            username: ${nacos.username}
+            password: ${nacos.password}
+            namespace: ${nacos.namespace}
+            groupId: SENTINEL_GROUP
+            dataId: ${spring.application.name}-param-rules
+            rule-type: param-flow
+        system:
+          nacos:
+            server-addr: ${nacos.server-addr}
+            username: ${nacos.username}
+            password: ${nacos.password}
+            namespace: ${nacos.namespace}
+            groupId: SENTINEL_GROUP
+            dataId: ${spring.application.name}-system-rules
+            rule-type: system
+        authority:
+          nacos:
+            server-addr: ${nacos.server-addr}
+            username: ${nacos.username}
+            password: ${nacos.password}
+            namespace: ${nacos.namespace}
+            groupId: SENTINEL_GROUP
+            dataId: ${spring.application.name}-authority-rules
+            rule-type: authority
+nacos:
+  server-addr: localhost:8848
+  username: nacos
+  password: nacos
+  namespace: sentinel
+```
